@@ -153,10 +153,12 @@ const Forum = () => {
               {/* Question Header */}
               <div className="mb-4">
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white flex-1">
+                  {/* Make title able to shrink on small screens to avoid overflow */}
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white flex-1 min-w-0">
                     {q.question}
                   </h3>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 ml-4">
+                  {/* Keep username from shrinking too small */}
+                  <span className="text-sm text-gray-500 dark:text-gray-400 ml-4 flex-shrink-0">
                     {q.user}
                   </span>
                 </div>
@@ -197,28 +199,35 @@ const Forum = () => {
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
-                  className="border-t border-gray-200 dark:border-gray-700 pt-4"
+                  className="border-t border-gray-200 dark:border-gray-700 pt-4 overflow-hidden"
                 >
-                  {q.comments.map((comment, idx) => (
-                    <div key={idx} className="mb-3 bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
-                      <span className="text-sm font-semibold text-primary-purple">{comment.user}: </span>
-                      <span className="text-sm text-gray-700 dark:text-gray-300">{comment.text}</span>
-                    </div>
-                  ))}
-                  <div className="flex gap-2 mt-3">
+                  {/* Comments list — limit height on very small screens and allow scrolling */}
+                  <div className="space-y-3 max-h-48 overflow-auto pr-2">
+                    {q.comments.map((comment, idx) => (
+                      <div key={idx} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
+                        <span className="text-sm font-semibold text-primary-purple">{comment.user}: </span>
+                        <span className="text-sm text-gray-700 dark:text-gray-300 break-words">{comment.text}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Input row — stack vertically on small screens (<= 640px default sm breakpoint is 640px).
+                      To make it friendly even for very narrow screens (320px), we set column layout by default
+                      and row layout at sm and above. Using min-w-0 on the input prevents flex overflow. */}
+                  <div className="flex flex-col sm:flex-row gap-2 mt-3">
                     <input
                       type="text"
                       value={commentText}
                       onChange={(e) => setCommentText(e.target.value)}
                       placeholder={locale === 'uz' ? 'Izoh yozish...' : locale === 'ru' ? 'Написать комментарий...' : 'Write a comment...'}
-                      className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-purple dark:bg-gray-600 dark:text-white"
+                      className="flex-1 min-w-0 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-purple dark:bg-gray-600 dark:text-white"
                       onKeyPress={(e) => e.key === 'Enter' && handleAddComment(q.id)}
                     />
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => handleAddComment(q.id)}
-                      className="bg-primary-purple text-white p-2 rounded-lg hover:opacity-90"
+                      className="bg-primary-purple text-white p-2 rounded-lg hover:opacity-90 sm:flex-shrink-0 w-full sm:w-auto"
                     >
                       <Send className="w-5 h-5" />
                     </motion.button>
