@@ -223,14 +223,14 @@ const Forum = () => {
                       className="flex-1 min-w-0 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-purple dark:bg-gray-600 dark:text-white"
                       onKeyPress={(e) => e.key === 'Enter' && handleAddComment(q.id)}
                     />
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleAddComment(q.id)}
-                      className="bg-primary-purple text-white p-2 rounded-lg hover:opacity-90 sm:flex-shrink-0 w-full sm:w-auto"
-                    >
-                      <Send className="w-5 h-5" />
-                    </motion.button>
+                   <motion.button
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  onClick={() => handleAddComment(q.id)}
+  className="flex items-center justify-center sm:justify-start bg-primary-purple text-white p-2 rounded-lg hover:opacity-90 sm:flex-shrink-0 w-full sm:w-auto"
+>
+  <Send className="w-5 h-5" />
+</motion.button>
                   </div>
                 </motion.div>
               )}
