@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Learn from './pages/Learn';
 import VideoPlayer from './pages/VideoPlayer';
+import CVBuilder from './pages/CVBuilder';
 import Meetups from './pages/Meetups';
 import Forum from './pages/Forum';
 import Inspiration from './pages/Inspiration';
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/learn" element={<Learn />} />
                 <Route path="/learn/:courseId" element={<VideoPlayer />} />
+                <Route path="/cv-builder" element={<CVBuilder />} />
                 <Route path="/meetups" element={<Meetups />} />
                 <Route path="/forum" element={<Forum />} />
                 <Route path="/inspiration" element={<Inspiration />} />

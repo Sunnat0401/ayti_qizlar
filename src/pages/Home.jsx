@@ -46,9 +46,9 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-primary-light dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-slate-500 dark:bg-gray-900 transition-colors">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-pink via-primary-purple to-purple-600 text-white">
+      <section className="relative overflow-hidden bg-slate-500  bg-gradient-to-r from-primary-pink to-primary-purple text-white home-bg">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
           <motion.div
@@ -63,12 +63,12 @@ const Home = () => {
             <p className="text-xl md:text-2xl mb-8 text-white/90">
               <FormattedMessage id="hero.subtitle" />
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/learn">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center no-underline hover:no-underline ">
+              <Link to="/learn" className='no-underline hover:no-underline'>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 bg-white text-primary-purple rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center"
+                  className="px-8 py-3 bg-white text-primary-purple rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center hero-buttons no-underline hover:no-underline "
                 >
                   <FormattedMessage id="hero.cta" />
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -125,7 +125,7 @@ const Home = () => {
             <Link to="/learn">
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                className="text-primary-purple font-semibold flex items-center"
+                className="text-primary-purple font-semibold flex items-center max-[500px]:justify-center hero-buttons"
               >
                 <FormattedMessage id="hero.cta2" />
                 <ArrowRight className="w-5 h-5 ml-2" />
